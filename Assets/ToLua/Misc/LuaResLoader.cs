@@ -105,7 +105,6 @@ public class LuaResLoader : LuaFileUtils
         byte[] buffer = null;
         string path = "Lua/" + fileName;
         TextAsset text = Resources.Load(path, typeof(TextAsset)) as TextAsset;
-
         if (text != null)
         {
             buffer = text.bytes;

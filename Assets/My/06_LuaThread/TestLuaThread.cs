@@ -24,7 +24,6 @@ public class TestLuaThread : MonoBehaviour
         luaState.LogGC = true;//显示GC回收的LOG日志
 
 
-        new LuaResLoader();
         var luaScript = Resources.Load<TextAsset>("TestLuaThread.lua");
         luaState.DoString(luaScript.text);
 
@@ -63,5 +62,11 @@ public class TestLuaThread : MonoBehaviour
             thread.Dispose();
             thread = null;
         }
+    }
+
+    private void OnDestroy()
+    {
+        CloseThread();
+        luaState.Dispose();
     }
 }

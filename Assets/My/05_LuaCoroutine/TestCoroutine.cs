@@ -27,7 +27,6 @@ public class TestCoroutine : MonoBehaviour
         LuaLooper looper = gameObject.AddComponent<LuaLooper>();
         looper.luaState = luaState;
 
-        new LuaResLoader();
         TextAsset luaFile = Resources.Load<TextAsset>("testCoroutine.lua");
         luaState.DoString(luaFile.text, "TestLuaCoroutine.lua");
 
@@ -59,6 +58,10 @@ public class TestCoroutine : MonoBehaviour
     {
         luaState.DoString("collectgarbage('collect')","TestCoroutine.cs");
         Resources.UnloadUnusedAssets();
-        
+    }
+
+    private void OnDestroy()
+    {
+        luaState.Dispose();
     }
 }
