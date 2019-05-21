@@ -1,0 +1,25 @@
+function fib(n)
+	local a, b = 0, 1
+	while n > 0 do
+		a, b = b, a + b
+		n = n - 1
+	end
+	return a
+end
+
+function CoFunc(len)
+	print("Coroutine started!")
+	local i = 0
+	for i = 0, len, 1 do
+		local flag = coroutine.yield(fib(i))
+		if not flag then
+			break
+		end
+	end
+	print("Coroutine ended")
+end
+
+function Test()
+	local co = coroutine.create(CoFunc)
+	return co
+end
