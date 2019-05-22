@@ -1,0 +1,39 @@
+function TestDict(map)
+	local iter = map:GetEnumerator()
+
+	while iter:MoveNext() do
+		local v = iter.Current.Value
+		print('id: '..v.id ..' name: '..v.name..' sex: '..v.sex)   
+	end
+
+	local flag, account = map:TryGetValue(1, nil)
+
+	if flag then
+		print("TryGetValue result Ok:" .. account.name)
+	end
+
+	local keys = map.Keys
+	iter = keys:GetEnumerator()
+	print("---------------Print Dict Keys------------------")
+	while iter:MoveNext() do
+		print(iter.Current)
+	end
+	print("----------End Keys----------------")
+
+	local values = map.Values
+	iter = values:GetEnumerator()
+	print("---------------Print Dict Values------------------")
+	while iter:MoveNext() do
+		print(iter.Current.name)
+	end
+	print("----------End Values----------------")
+
+	print("kick" .. map[2].name)
+	map:Remove(2)
+	iter = map:GetEnumerator()
+
+	while iter:MoveNext() do
+		local v = iter.Current.Value
+		print('id: '..v.id ..' name: '..v.name..' sex: '..v.sex) 
+	end
+end
