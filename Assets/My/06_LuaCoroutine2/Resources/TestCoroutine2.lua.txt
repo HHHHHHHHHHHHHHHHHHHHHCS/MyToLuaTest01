@@ -1,0 +1,44 @@
+function CoExample()
+	WaitForSeconds(1)
+	print("WaitForSeconds end time:" .. UnityEngine.Time.time)
+	WaitForFixedUpdate()
+	print("WaitForFixedUpdate end frameCount" .. UnityEngine.Time.frameCount)
+	WaitForEndOfFrame()
+	print("WaitForEndOfFrame end frameCount" .. UnityEngine.Time.frameCount)
+	Yield(null)
+	print("yeild null end frameCount" .. UnityEngine.Time.frameCount)
+	Yield(0)
+	print("yeild 0 end frameCount" .. UnityEngine.Time.frameCount)
+	local www = UnityEngine.WWW("http://www.baidu.com")
+	Yield(www)
+	print("Yield www end time:" .. UnityEngine.Time.time)
+	local s = tolua.tolstring(www.bytes)
+	print(s:sub(1, 128))
+	print("coroutine over")
+end
+
+function TestCo()
+	StartCoroutine(CoExample)
+end
+
+local coDelay = nil
+
+function Delay()
+	local c = 1
+
+	while true do
+		WaitForSeconds(1)
+		print("Count:" .. c)
+		c = c + 1
+	end
+end
+
+function StartDelay()
+	coDelay = StartCoroutine(Delay)
+end
+
+function StopDelay()
+	StopCoroutine(coDelay)
+	coDelay =nil
+
+end
