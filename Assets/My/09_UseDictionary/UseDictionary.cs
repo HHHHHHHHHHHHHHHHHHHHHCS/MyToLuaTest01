@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using LuaInterface;
 using UnityEngine;
 
+
+//CustomSetting.cs  class add in customTypeList
 public sealed class TestAccount
 {
     public int id;

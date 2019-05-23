@@ -32,6 +32,8 @@ public class DelegateFactory
 		dict.Add(typeof(UnityEngine.AudioClip.PCMReaderCallback), factory.UnityEngine_AudioClip_PCMReaderCallback);
 		dict.Add(typeof(UnityEngine.AudioClip.PCMSetPositionCallback), factory.UnityEngine_AudioClip_PCMSetPositionCallback);
 		dict.Add(typeof(System.Action<UnityEngine.AsyncOperation>), factory.System_Action_UnityEngine_AsyncOperation);
+		dict.Add(typeof(TestEventListener.OnClick), factory.TestEventListener_OnClick);
+		dict.Add(typeof(TestEventListener.VoidDelegate), factory.TestEventListener_VoidDelegate);
 
 		DelegateTraits<System.Action>.Init(factory.System_Action);
 		DelegateTraits<UnityEngine.Events.UnityAction>.Init(factory.UnityEngine_Events_UnityAction);
@@ -48,6 +50,8 @@ public class DelegateFactory
 		DelegateTraits<UnityEngine.AudioClip.PCMReaderCallback>.Init(factory.UnityEngine_AudioClip_PCMReaderCallback);
 		DelegateTraits<UnityEngine.AudioClip.PCMSetPositionCallback>.Init(factory.UnityEngine_AudioClip_PCMSetPositionCallback);
 		DelegateTraits<System.Action<UnityEngine.AsyncOperation>>.Init(factory.System_Action_UnityEngine_AsyncOperation);
+		DelegateTraits<TestEventListener.OnClick>.Init(factory.TestEventListener_OnClick);
+		DelegateTraits<TestEventListener.VoidDelegate>.Init(factory.TestEventListener_VoidDelegate);
 
 		TypeTraits<System.Action>.Init(factory.Check_System_Action);
 		TypeTraits<UnityEngine.Events.UnityAction>.Init(factory.Check_UnityEngine_Events_UnityAction);
@@ -64,6 +68,8 @@ public class DelegateFactory
 		TypeTraits<UnityEngine.AudioClip.PCMReaderCallback>.Init(factory.Check_UnityEngine_AudioClip_PCMReaderCallback);
 		TypeTraits<UnityEngine.AudioClip.PCMSetPositionCallback>.Init(factory.Check_UnityEngine_AudioClip_PCMSetPositionCallback);
 		TypeTraits<System.Action<UnityEngine.AsyncOperation>>.Init(factory.Check_System_Action_UnityEngine_AsyncOperation);
+		TypeTraits<TestEventListener.OnClick>.Init(factory.Check_TestEventListener_OnClick);
+		TypeTraits<TestEventListener.VoidDelegate>.Init(factory.Check_TestEventListener_VoidDelegate);
 
 		StackTraits<System.Action>.Push = factory.Push_System_Action;
 		StackTraits<UnityEngine.Events.UnityAction>.Push = factory.Push_UnityEngine_Events_UnityAction;
@@ -80,6 +86,8 @@ public class DelegateFactory
 		StackTraits<UnityEngine.AudioClip.PCMReaderCallback>.Push = factory.Push_UnityEngine_AudioClip_PCMReaderCallback;
 		StackTraits<UnityEngine.AudioClip.PCMSetPositionCallback>.Push = factory.Push_UnityEngine_AudioClip_PCMSetPositionCallback;
 		StackTraits<System.Action<UnityEngine.AsyncOperation>>.Push = factory.Push_System_Action_UnityEngine_AsyncOperation;
+		StackTraits<TestEventListener.OnClick>.Push = factory.Push_TestEventListener_OnClick;
+		StackTraits<TestEventListener.VoidDelegate>.Push = factory.Push_TestEventListener_VoidDelegate;
 	}
     
     public static Delegate CreateDelegate(Type t, LuaFunction func = null)
@@ -1054,6 +1062,120 @@ public class DelegateFactory
 	}
 
 	void Push_System_Action_UnityEngine_AsyncOperation(IntPtr L, System.Action<UnityEngine.AsyncOperation> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class TestEventListener_OnClick_Event : LuaDelegate
+	{
+		public TestEventListener_OnClick_Event(LuaFunction func) : base(func) { }
+		public TestEventListener_OnClick_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(UnityEngine.GameObject param0)
+		{
+			func.BeginPCall();
+			func.PushSealed(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(UnityEngine.GameObject param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushSealed(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public TestEventListener.OnClick TestEventListener_OnClick(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			TestEventListener.OnClick fn = delegate(UnityEngine.GameObject param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			TestEventListener_OnClick_Event target = new TestEventListener_OnClick_Event(func);
+			TestEventListener.OnClick d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			TestEventListener_OnClick_Event target = new TestEventListener_OnClick_Event(func, self);
+			TestEventListener.OnClick d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_TestEventListener_OnClick(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(TestEventListener.OnClick), L, pos);
+	}
+
+	void Push_TestEventListener_OnClick(IntPtr L, TestEventListener.OnClick o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class TestEventListener_VoidDelegate_Event : LuaDelegate
+	{
+		public TestEventListener_VoidDelegate_Event(LuaFunction func) : base(func) { }
+		public TestEventListener_VoidDelegate_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(UnityEngine.GameObject param0)
+		{
+			func.BeginPCall();
+			func.PushSealed(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(UnityEngine.GameObject param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushSealed(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public TestEventListener.VoidDelegate TestEventListener_VoidDelegate(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			TestEventListener.VoidDelegate fn = delegate(UnityEngine.GameObject param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			TestEventListener_VoidDelegate_Event target = new TestEventListener_VoidDelegate_Event(func);
+			TestEventListener.VoidDelegate d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			TestEventListener_VoidDelegate_Event target = new TestEventListener_VoidDelegate_Event(func, self);
+			TestEventListener.VoidDelegate d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_TestEventListener_VoidDelegate(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(TestEventListener.VoidDelegate), L, pos);
+	}
+
+	void Push_TestEventListener_VoidDelegate(IntPtr L, TestEventListener.VoidDelegate o)
 	{
 		ToLua.Push(L, o);
 	}
