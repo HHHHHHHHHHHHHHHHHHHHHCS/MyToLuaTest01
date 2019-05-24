@@ -140,22 +140,22 @@ public class TestDelegate : MonoBehaviour
         {
             CallLuaFunction(removeEvent);
         }
-        else if (GUI.Button(new Rect(10, 610, 240, 80), "event call"))
+        else if (GUI.Button(new Rect(260, 10, 240, 80), "event call"))
         {
             listener.OnClickEvent(gameObject);
         }
-        else if (GUI.Button(new Rect(260, 10, 240, 80), "+self call"))
+        else if (GUI.Button(new Rect(260, 90, 240, 80), "+self call"))
         {
             CallLuaFunction(addSelfClick);
         }
-        else if (GUI.Button(new Rect(260, 90, 240, 80), "-self call"))
+        else if (GUI.Button(new Rect(260, 170, 240, 80), "-self call"))
         {
             CallLuaFunction(removeSelfClick);
         }
-        else if (GUI.Button(new Rect(260, 170, 240, 80), "call onclick"))
+        else if (GUI.Button(new Rect(260, 250, 240, 80), "call onclick"))
         {
             CallLuaFunction(callOnClick);
-            listener.onAct();
+            //listener.onAct();
         }
     }
 }
