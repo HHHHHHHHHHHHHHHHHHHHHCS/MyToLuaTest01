@@ -153,7 +153,8 @@ public static class CustomSettings
         _GT(typeof(LuaProfiler)),
 
 
-        _GT(typeof(TestEventListener))
+        _GT(typeof(TestEventListener)),
+        _GT(typeof(TestProtol))
     };
 
     public static List<Type> dynamicList = new List<Type>()

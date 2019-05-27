@@ -12,6 +12,7 @@ public static class LuaBinder
 		LuaInterface_DebuggerWrap.Register(L);
 		LuaProfilerWrap.Register(L);
 		TestEventListenerWrap.Register(L);
+		TestProtolWrap.Register(L);
 		L.BeginModule("LuaInterface");
 		LuaInterface_LuaInjectionStationWrap.Register(L);
 		LuaInterface_InjectTypeWrap.Register(L);
