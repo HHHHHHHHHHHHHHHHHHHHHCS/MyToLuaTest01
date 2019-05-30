@@ -34,6 +34,8 @@ public class DelegateFactory
 		dict.Add(typeof(System.Action<UnityEngine.AsyncOperation>), factory.System_Action_UnityEngine_AsyncOperation);
 		dict.Add(typeof(TestEventListener.OnClick), factory.TestEventListener_OnClick);
 		dict.Add(typeof(TestEventListener.VoidDelegate), factory.TestEventListener_VoidDelegate);
+		dict.Add(typeof(TestExport.TestRefEvent), factory.TestExport_TestRefEvent);
+		dict.Add(typeof(TestExport.TestBuffer), factory.TestExport_TestBuffer);
 
 		DelegateTraits<System.Action>.Init(factory.System_Action);
 		DelegateTraits<UnityEngine.Events.UnityAction>.Init(factory.UnityEngine_Events_UnityAction);
@@ -52,6 +54,8 @@ public class DelegateFactory
 		DelegateTraits<System.Action<UnityEngine.AsyncOperation>>.Init(factory.System_Action_UnityEngine_AsyncOperation);
 		DelegateTraits<TestEventListener.OnClick>.Init(factory.TestEventListener_OnClick);
 		DelegateTraits<TestEventListener.VoidDelegate>.Init(factory.TestEventListener_VoidDelegate);
+		DelegateTraits<TestExport.TestRefEvent>.Init(factory.TestExport_TestRefEvent);
+		DelegateTraits<TestExport.TestBuffer>.Init(factory.TestExport_TestBuffer);
 
 		TypeTraits<System.Action>.Init(factory.Check_System_Action);
 		TypeTraits<UnityEngine.Events.UnityAction>.Init(factory.Check_UnityEngine_Events_UnityAction);
@@ -70,6 +74,8 @@ public class DelegateFactory
 		TypeTraits<System.Action<UnityEngine.AsyncOperation>>.Init(factory.Check_System_Action_UnityEngine_AsyncOperation);
 		TypeTraits<TestEventListener.OnClick>.Init(factory.Check_TestEventListener_OnClick);
 		TypeTraits<TestEventListener.VoidDelegate>.Init(factory.Check_TestEventListener_VoidDelegate);
+		TypeTraits<TestExport.TestRefEvent>.Init(factory.Check_TestExport_TestRefEvent);
+		TypeTraits<TestExport.TestBuffer>.Init(factory.Check_TestExport_TestBuffer);
 
 		StackTraits<System.Action>.Push = factory.Push_System_Action;
 		StackTraits<UnityEngine.Events.UnityAction>.Push = factory.Push_UnityEngine_Events_UnityAction;
@@ -88,6 +94,8 @@ public class DelegateFactory
 		StackTraits<System.Action<UnityEngine.AsyncOperation>>.Push = factory.Push_System_Action_UnityEngine_AsyncOperation;
 		StackTraits<TestEventListener.OnClick>.Push = factory.Push_TestEventListener_OnClick;
 		StackTraits<TestEventListener.VoidDelegate>.Push = factory.Push_TestEventListener_VoidDelegate;
+		StackTraits<TestExport.TestRefEvent>.Push = factory.Push_TestExport_TestRefEvent;
+		StackTraits<TestExport.TestBuffer>.Push = factory.Push_TestExport_TestBuffer;
 	}
     
     public static Delegate CreateDelegate(Type t, LuaFunction func = null)
@@ -1176,6 +1184,120 @@ public class DelegateFactory
 	}
 
 	void Push_TestEventListener_VoidDelegate(IntPtr L, TestEventListener.VoidDelegate o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class TestExport_TestRefEvent_Event : LuaDelegate
+	{
+		public TestExport_TestRefEvent_Event(LuaFunction func) : base(func) { }
+		public TestExport_TestRefEvent_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(ref UnityEngine.GameObject param0)
+		{
+			func.BeginPCall();
+			func.PushSealed(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(ref UnityEngine.GameObject param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushSealed(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public TestExport.TestRefEvent TestExport_TestRefEvent(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			TestExport.TestRefEvent fn = delegate(ref UnityEngine.GameObject param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			TestExport_TestRefEvent_Event target = new TestExport_TestRefEvent_Event(func);
+			TestExport.TestRefEvent d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			TestExport_TestRefEvent_Event target = new TestExport_TestRefEvent_Event(func, self);
+			TestExport.TestRefEvent d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_TestExport_TestRefEvent(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(TestExport.TestRefEvent), L, pos);
+	}
+
+	void Push_TestExport_TestRefEvent(IntPtr L, TestExport.TestRefEvent o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class TestExport_TestBuffer_Event : LuaDelegate
+	{
+		public TestExport_TestBuffer_Event(LuaFunction func) : base(func) { }
+		public TestExport_TestBuffer_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(byte[] param0)
+		{
+			func.BeginPCall();
+			func.PushByteBuffer(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(byte[] param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushByteBuffer(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public TestExport.TestBuffer TestExport_TestBuffer(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			TestExport.TestBuffer fn = delegate(byte[] param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			TestExport_TestBuffer_Event target = new TestExport_TestBuffer_Event(func);
+			TestExport.TestBuffer d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			TestExport_TestBuffer_Event target = new TestExport_TestBuffer_Event(func, self);
+			TestExport.TestBuffer d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_TestExport_TestBuffer(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(TestExport.TestBuffer), L, pos);
+	}
+
+	void Push_TestExport_TestBuffer(IntPtr L, TestExport.TestBuffer o)
 	{
 		ToLua.Push(L, o);
 	}

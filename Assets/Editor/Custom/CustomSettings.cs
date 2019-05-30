@@ -154,7 +154,9 @@ public static class CustomSettings
 
 
         _GT(typeof(TestEventListener)),
-        _GT(typeof(TestProtol))
+        _GT(typeof(TestProtol)),
+        _GT(typeof(TestExport)),
+        _GT(typeof(TestExport.Space)),
     };
 
     public static List<Type> dynamicList = new List<Type>()
